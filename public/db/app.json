@@ -1,0 +1,81 @@
+{
+  "tables": [
+    {
+      "id": "1",
+      "statusId": "1",
+      "peopleAmount": "2",
+      "maxPeopleAmount": "4",
+      "bill": "20"
+    },
+    {
+      "id": "2",
+      "statusId": "1",
+      "peopleAmount": 0,
+      "maxPeopleAmount": 3,
+      "bill": 0
+    },
+    {
+      "id": "3",
+      "statusId": "1",
+      "peopleAmount": 2,
+      "maxPeopleAmount": 3,
+      "bill": 45
+    },
+    {
+      "id": "4",
+      "statusId": "1",
+      "peopleAmount": 0,
+      "maxPeopleAmount": 3,
+      "bill": 0
+    },
+    {
+      "id": "cCrtIIm",
+      "statusId": "1",
+      "peopleAmount": 1,
+      "maxPeopleAmount": 9,
+      "bill": 0
+    },
+    {
+      "id": "XfoWpGY",
+      "statusId": "1",
+      "peopleAmount": "5",
+      "maxPeopleAmount": "6",
+      "bill": "0789"
+    },
+    {
+      "id": "bquHD-y",
+      "statusId": "1",
+      "peopleAmount": "4",
+      "maxPeopleAmount": "8",
+      "bill": "45896"
+    },
+    {
+      "id": "gSzqB8Q",
+      "statusId": "1",
+      "peopleAmount": "4",
+      "maxPeopleAmount": "4",
+      "bill": "4"
+    },
+    {
+      "id": "Lf8JFSY",
+      "statusId": "1",
+      "peopleAmount": "5",
+      "maxPeopleAmount": "5",
+      "bill": "5"
+    }
+  ],
+  "statuts": [
+    {
+      "id": "1",
+      "statusName": "Busy"
+    },
+    {
+      "id": "2",
+      "statusName": "Free"
+    },
+    {
+      "id": "3",
+      "statusName": "Cleaning"
+    }
+  ]
+}

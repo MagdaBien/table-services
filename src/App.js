@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import { Routes, Route } from 'react-router-dom';
+import Tables from './components/pages/Tables/Tables';
+import Table from './components/pages/Table/Table';
+import TableAdd from './components/pages/TableAdd/TableAdd';
+import TableEdit from './components/pages/TableEdit/TableEdit';
+import ErrorPage  from './components/pages/ErrorPage/ErrorPage';
+import { Container } from 'react-bootstrap';
+import Header from './components/views/Header/Header';
+import Footer from './components/views/Footer/Footer';
+import { fetchTables } from './redux/tablesRedux';
+import { fetchStatuts } from './redux/statutsRedux';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+
+const App = () => {
+
+  const dispatch = useDispatch();
+
+
+  useEffect(() => dispatch(fetchTables()), [dispatch]);
+  useEffect(() => dispatch(fetchStatuts()), [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Header />       
+      <Routes>
+      <Route path="/" element={<Tables />} />
+      <Route path="/tableAdd" element={<TableAdd />} />  
+      <Route path="/tableEdit/:id" element={<TableEdit />} />               
+      <Route path="/table/:id" element={<Table />} />  
+      <Route path="*" element={<ErrorPage />} />          
+    </Routes>    
+    <Footer />
+    </Container>
   );
-}
+};
 
 export default App;
