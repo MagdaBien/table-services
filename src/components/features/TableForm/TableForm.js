@@ -44,7 +44,9 @@ const TableForm = ({ actionHandle, buttonName, formState }) => {
     if (newFormData.statusId !== "3") {
       newFormData.bill = "0";
     }
-    if (newFormData.peopleAmount > newFormData.maxPeopleAmount) {
+    if (
+      Number(newFormData.peopleAmount) > Number(newFormData.maxPeopleAmount)
+    ) {
       newFormData.peopleAmount = newFormData.maxPeopleAmount;
     }
 
