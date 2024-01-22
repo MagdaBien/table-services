@@ -14,6 +14,7 @@ const TableForm = ({ actionHandle, buttonName, formState }) => {
     handleSubmit: validate,
     formState: { errors },
   } = useForm();
+  console.log("hello from TableForm");
 
   const statutsList = useSelector(getAllStatuts);
 
