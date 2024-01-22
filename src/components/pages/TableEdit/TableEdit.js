@@ -1,13 +1,12 @@
-
 import EditTableForm from "../../features/EditTableForm/EditTableForm";
 
 const TableEdit = () => {
-    return(
+  return (
     <div>
-        <h1>Table Editing</h1>
-        <EditTableForm></EditTableForm>
+      <h1>Table Editing</h1>
+      <EditTableForm></EditTableForm>
     </div>
-    );
+  );
 };
-    
+
 export default TableEdit;

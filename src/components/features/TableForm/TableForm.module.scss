@@ -11,9 +11,15 @@
     margin: 30px auto;
 }
 
-.smallInput, .form-control {
-    width: 70px;
-    display: inline;
-    margin: 0 10px;
+.smallInput {
+    width: 70px!important;
+    display: inline!important;
+    margin: 5px 10px;
+}
+
+.bill {
+    width: 200px!important;
+    display: inline!important;
+    margin: 5px 10px;
 }
 

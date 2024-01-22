@@ -110,19 +110,17 @@ const tablesReducer = (statePart = initialState.tables, action) => {
       };
     case EDIT_TABLE:
       return {
-        data: [
-          statePart.data.map((table) =>
-            table.id === action.payload.id
-              ? { ...table, ...action.payload }
-              : table
-          ),
-        ],
+        data: statePart.data.map((table) =>
+          table.id === action.payload.id
+            ? { ...table, ...action.payload }
+            : table
+        ),
         isLoading: false,
         isError: false,
       };
     case REMOVE_TABLE:
       return {
-        data: [statePart.data.filter((table) => table.id !== action.payload)],
+        data: statePart.data.filter((table) => table.id !== action.payload),
         isLoading: false,
         isError: false,
       };

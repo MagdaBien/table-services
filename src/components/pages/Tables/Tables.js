@@ -12,13 +12,11 @@ import { isLoadingTables } from "../../../redux/tablesRedux";
 import { isErrorTables } from "../../../redux/tablesRedux";
 import { isLoadingStatuts } from "../../../redux/statutsRedux";
 import { isErrorStatuts } from "../../../redux/statutsRedux";
-import { getAllStatuts } from "../../../redux/statutsRedux";
 
 const Tables = () => {
   const dispatch = useDispatch();
 
   const tablesList = useSelector(getAllTables);
-  const statutsList = useSelector(getAllStatuts);
 
   const isLoadingDataTables = useSelector(isLoadingTables);
   const isErrorDataTables = useSelector(isErrorTables);
@@ -43,6 +41,10 @@ const Tables = () => {
     return <p>Error ...</p>;
   }
 
+  if (tablesList.length === 0) {
+    return <p>No data ...</p>;
+  }
+
   //console.log("statutsList: ", statutsList);
   //console.log("tablesList: ", tablesList);
 
@@ -55,7 +57,6 @@ const Tables = () => {
             key={table.id}
             handleShow={handleShow}
             setId={setId}
-            statuts={statutsList}
             {...table}
           ></TableItem>
         ))}

@@ -1,101 +1,56 @@
 {
   "tables": [
     {
+      "id": "2",
+      "statusId": "2",
+      "peopleAmount": "6",
+      "maxPeopleAmount": "8",
+      "bill": "0"
+    },
+    {
       "id": "3",
-      "statusId": "1",
-      "peopleAmount": 2,
-      "maxPeopleAmount": 3,
-      "bill": "457"
+      "statusId": "3",
+      "peopleAmount": "9",
+      "maxPeopleAmount": "9",
+      "bill": "12340"
     },
     {
       "id": "4",
-      "statusId": "1",
-      "peopleAmount": "4",
-      "maxPeopleAmount": 3,
-      "bill": 0
-    },
-    {
-      "id": "cCrtIIm",
-      "statusId": "1",
-      "peopleAmount": 1,
-      "maxPeopleAmount": 9,
-      "bill": 0
-    },
-    {
-      "id": "XfoWpGY",
-      "statusId": "3",
-      "peopleAmount": "5",
-      "maxPeopleAmount": "6",
-      "bill": "0789"
-    },
-    {
-      "id": "bquHD-y",
-      "statusId": "2",
-      "peopleAmount": "4",
-      "maxPeopleAmount": "8",
-      "bill": "45896"
-    },
-    {
-      "id": "Lf8JFSY",
-      "statusId": "3",
-      "peopleAmount": "5",
-      "maxPeopleAmount": "5",
-      "bill": "5"
-    },
-    {
-      "id": "owMGZt6",
-      "statusId": "1",
-      "peopleAmount": "10",
-      "maxPeopleAmount": "1000",
-      "bill": "123456"
-    },
-    {
-      "id": "Wcqbu2g",
-      "statusId": "3",
-      "peopleAmount": "555",
-      "maxPeopleAmount": "1900",
-      "bill": "1000000000"
-    },
-    {
-      "id": "e4wmHf3",
-      "statusId": "2",
-      "peopleAmount": "7777777777777777777777",
-      "maxPeopleAmount": "99999999999999999999999999",
-      "bill": "345666666666666666666666777777777777777777789"
-    },
-    {
-      "id": "G_da8ln",
-      "statusId": "2",
-      "peopleAmount": "7",
-      "maxPeopleAmount": "8",
-      "bill": "999,999"
-    },
-    {
-      "id": "H-gCFcz",
-      "statusId": "2",
+      "statusId": "4",
       "peopleAmount": "0",
-      "maxPeopleAmount": "5",
-      "bill": "1"
+      "maxPeopleAmount": "8",
+      "bill": "0"
     },
     {
-      "id": "sAXWVF2",
-      "statusId": "2",
-      "peopleAmount": "4",
-      "maxPeopleAmount": "4",
-      "bill": "4"
+      "id": "5",
+      "statusId": "1",
+      "peopleAmount": "0",
+      "maxPeopleAmount": "6",
+      "bill": "0"
+    },
+    {
+      "id": "ek8pMUZ",
+      "statusId": "3",
+      "peopleAmount": "7",
+      "maxPeopleAmount": "7",
+      "bill": "0"
     }
   ],
   "statuts": [
     {
       "id": "1",
-      "statusName": "Busy"
-    },
-    {
-      "id": "2",
       "statusName": "Free"
     },
     {
+      "id": "2",
+      "statusName": "Reserved"
+    },
+    {
       "id": "3",
+      "statusName": "Busy"
+    },
+    {
+      "id": "4",
       "statusName": "Cleaning"
     }
   ]

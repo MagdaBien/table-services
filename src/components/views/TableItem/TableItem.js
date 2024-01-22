@@ -5,13 +5,11 @@ import Col from "react-bootstrap/Col";
 import { NavLink } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import ListGroup from "react-bootstrap/ListGroup";
+import { useSelector } from "react-redux";
+import { getStatusById } from "../../../redux/statutsRedux";
 
 const TableItem = (props) => {
-  function findStatus(id) {
-    const stat = props.statuts.find((status) => status.id === id);
-    //console.log("stat", stat);
-    if (stat !== undefined) return stat.statusName;
-  }
+  const status = useSelector((state) => getStatusById(state, props.statusId));
 
   return (
     <ListGroup.Item>
@@ -23,7 +21,7 @@ const TableItem = (props) => {
         </Col>
         <Col>
           <span className={styles.bold}>Status: </span>
-          {findStatus(props.statusId)}
+          {status.statusName}
         </Col>
         <Col>
           <Button
