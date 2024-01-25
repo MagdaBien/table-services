@@ -61,7 +61,7 @@ export const addTableRequest = (newTable) => {
 export const editTableRequest = (chosenTable) => {
   return (dispatch) => {
     const options = {
-      method: "PATCH",
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(chosenTable),
     };

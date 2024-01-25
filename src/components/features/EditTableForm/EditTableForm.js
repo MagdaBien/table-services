@@ -10,7 +10,7 @@ import { Navigate } from "react-router-dom";
 const EditTableForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log("hello from EditTableForm");
+  //console.log("hello from EditTableForm");
 
   const { id } = useParams();
   const form = useSelector((state) => getTableById(state, id));

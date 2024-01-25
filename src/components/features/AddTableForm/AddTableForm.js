@@ -11,8 +11,8 @@ const AddTableForm = () => {
     id: "",
     statusId: "1",
     peopleAmount: "0",
-    maxPeopleAmount: "",
-    bill: 0,
+    maxPeopleAmount: "10",
+    bill: "0",
   };
 
   const handleSubmit = (form) => {

@@ -2,10 +2,11 @@
   "tables": [
     {
       "id": "2",
-      "statusId": "2",
-      "peopleAmount": "6",
-      "maxPeopleAmount": "8",
-      "bill": "0"
+      "statusId": "3",
+      "peopleAmount": "1",
+      "maxPeopleAmount": "7",
+      "bill": "888",
+      "bil": "0"
     },
     {
       "id": "3",
@@ -33,6 +34,20 @@
       "statusId": "3",
       "peopleAmount": "7",
       "maxPeopleAmount": "7",
+      "bill": "770"
+    },
+    {
+      "id": "FN8XLYr",
+      "statusId": "3",
+      "peopleAmount": "5",
+      "maxPeopleAmount": "6",
+      "bill": "89"
+    },
+    {
+      "id": "sAloegJ",
+      "statusId": "1",
+      "peopleAmount": "0",
+      "maxPeopleAmount": "10",
       "bill": "0"
     }
   ],
