@@ -1,31 +1,64 @@
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
 import { getAllStatuts } from "../../../redux/statutsRedux";
 import { useSelector } from "react-redux";
 import styles from "./TableForm.module.scss";
 import { isLoadingStatuts } from "../../../redux/statutsRedux";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
+import { useEffect } from "react";
 
 const TableForm = ({ actionHandle, buttonName, formState }) => {
-  const {
-    register,
-    handleSubmit: validate,
-    formState: { errors },
-  } = useForm();
-
+  const isLoadingDataStatuts = useSelector(isLoadingStatuts);
   const statutsList = useSelector(getAllStatuts);
-  const [peopleAmountError, setPeopleAmountError] = useState(false);
-
   const [form, setForm] = useState({
     ...formState,
   });
+  const [errorPeople, setErrorPeople] = useState(false);
 
-  const isLoadingDataStatuts = useSelector(isLoadingStatuts);
-  if (isLoadingDataStatuts) {
-    return <p>Loading ...</p>;
-  }
+  useEffect(() => {
+    setErrorPeople(false);
+    const minPeople = "0";
+    const maxPeople = "10";
+
+    const newFormData = { ...form };
+
+    // checking min and max value
+    if (Number(newFormData.peopleAmount) < Number(minPeople)) {
+      newFormData.peopleAmount = minPeople;
+      setErrorPeople("Minimum amount is " + minPeople);
+    }
+    if (Number(newFormData.peopleAmount) > Number(maxPeople)) {
+      newFormData.peopleAmount = maxPeople;
+      setErrorPeople("Maximum amount is " + maxPeople);
+    }
+    if (Number(newFormData.maxPeopleAmount) < Number(minPeople)) {
+      newFormData.maxPeopleAmount = minPeople;
+      setErrorPeople("Minimum amount is " + minPeople);
+    }
+    if (Number(newFormData.maxPeopleAmount) > Number(maxPeople)) {
+      newFormData.maxPeopleAmount = maxPeople;
+      setErrorPeople("Maximum amount is " + maxPeople);
+    }
+    // checking if amount people is bigger than max
+    if (
+      Number(newFormData.peopleAmount) > Number(newFormData.maxPeopleAmount)
+    ) {
+      newFormData.peopleAmount = newFormData.maxPeopleAmount;
+      setErrorPeople("People amount can't be bigger than max people amount.");
+    }
+
+    // cleaning table (people amount and bill) when status other than busy
+    if (newFormData.statusId !== "3" && newFormData.peopleAmount !== "0") {
+      newFormData.peopleAmount = "0";
+      newFormData.bill = "0";
+      setErrorPeople("Only BUSY is allowed to have value other than 0.");
+    }
+
+    if (errorPeople !== false) {
+      setForm(newFormData);
+    }
+  }, [form, errorPeople]);
 
   const updateFields = (e) => {
     setForm({
@@ -34,85 +67,24 @@ const TableForm = ({ actionHandle, buttonName, formState }) => {
     });
   };
 
-  const updateAfterStatusChanged = (e) => {
-    const newFormData = { ...form };
-    if (e.target.value !== "3" && newFormData.peopleAmount !== "0") {
-      newFormData.peopleAmount = "0";
-      newFormData.bill = "0";
-      newFormData.statusId = e.target.value;
-      setPeopleAmountError("Status change caused the field to be reset.");
-    } else {
-      newFormData.statusId = e.target.value;
-      setPeopleAmountError(false);
-    }
-    setForm(newFormData);
-  };
-
-  const updatePeopleAmount = (e) => {
-    const newFormData = { ...form };
-
-    setPeopleAmountError(false);
-
-    if (e.target.value < 0) {
-      e.target.value = "0";
-    }
-    if (e.target.value > 10) {
-      e.target.value = "10";
-    }
-
-    if (newFormData.statusId !== "3" && e.target.value !== "0") {
-      newFormData.peopleAmount = "0";
-      setPeopleAmountError("Only BUSY is allowed to have value other than 0.");
-    } else if (Number(e.target.value) > Number(newFormData.maxPeopleAmount)) {
-      newFormData.peopleAmount = newFormData.maxPeopleAmount;
-      setPeopleAmountError(
-        "People amount can't be bigger than max people amount."
-      );
-    } else {
-      newFormData.peopleAmount = e.target.value;
-      setPeopleAmountError(false);
-    }
-    setForm(newFormData);
-  };
-
-  const updateMaxPeopleAmount = (e) => {
-    const newFormData = { ...form };
-
-    setPeopleAmountError(false);
-    if (e.target.value < 0) {
-      e.target.value = "0";
-    }
-    if (e.target.value > 10) {
-      e.target.value = "10";
-    }
-    if (Number(e.target.value) < Number(newFormData.peopleAmount)) {
-      newFormData.peopleAmount = e.target.value;
-      newFormData.maxPeopleAmount = e.target.value;
-      setPeopleAmountError(
-        "People amount can't be bigger than max people amount."
-      );
-    } else {
-      newFormData.maxPeopleAmount = e.target.value;
-      setPeopleAmountError(false);
-    }
-    setForm(newFormData);
-  };
-
   const actionHandler = (e) => {
     actionHandle(form);
   };
 
+  if (isLoadingDataStatuts) {
+    return <p>Loading ...</p>;
+  }
+
   return (
     <div className={styles.smallerForm}>
-      <Form onSubmit={validate(actionHandler)}>
+      <Form onSubmit={actionHandler}>
         <Form.Group className="mb-3">
           <Form.Label>Status: </Form.Label>
           <FloatingLabel controlId="floatingSelect" label="Choose status">
             <Form.Select
               id="statusId"
-              {...register("statusId", { required: true })}
               value={form.statusId}
-              onChange={updateAfterStatusChanged}
+              onChange={updateFields}
             >
               {statutsList.map((status) => (
                 <option key={status.id} value={status.id}>
@@ -121,11 +93,6 @@ const TableForm = ({ actionHandle, buttonName, formState }) => {
               ))}
             </Form.Select>
           </FloatingLabel>
-          {errors.statusId && (
-            <small className="d-block form-text text-danger mt-2">
-              This option should be chosen
-            </small>
-          )}
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>People: </Form.Label>
@@ -133,36 +100,18 @@ const TableForm = ({ actionHandle, buttonName, formState }) => {
             type="number"
             id="peopleAmount"
             className={styles.smallInput}
-            {...register("peopleAmount", { required: true })}
             value={form.peopleAmount}
-            onChange={updatePeopleAmount}
+            onChange={updateFields}
           />
-          {errors.peopleAmount && (
-            <small className="d-block form-text text-danger mt-2">
-              Require 0 to 10.
-            </small>
-          )}
-          {peopleAmountError && (
-            <small className="d-block form-text text-danger mt-2">
-              {peopleAmountError}
-            </small>
-          )}
           /
           <Form.Control
             type="number"
             id="maxPeopleAmount"
             className={styles.smallInput}
-            {...register("maxPeopleAmount", {
-              required: true,
-            })}
             value={form.maxPeopleAmount}
-            onChange={updateMaxPeopleAmount}
+            onChange={updateFields}
           />
-          {errors.maxPeopleAmount && (
-            <small className="d-block form-text text-danger mt-2">
-              Require 0 to 10
-            </small>
-          )}
+          <p className="er">{errorPeople}</p>
         </Form.Group>
         {form.statusId === "3" && (
           <Form.Group className="mb-3">
