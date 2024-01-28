@@ -15,6 +15,7 @@ const TableForm = ({ actionHandle, buttonName, formState }) => {
     ...formState,
   });
   const [errorPeople, setErrorPeople] = useState(false);
+  const [errorBill, setErrorBill] = useState(false);
 
   useEffect(() => {
     setErrorPeople(false);
@@ -48,17 +49,25 @@ const TableForm = ({ actionHandle, buttonName, formState }) => {
       setErrorPeople("People amount can't be bigger than max people amount.");
     }
 
-    // cleaning table (people amount and bill) when status other than busy
-    if (newFormData.statusId !== "3" && newFormData.peopleAmount !== "0") {
+    // cleaning table (people amount) when status other than busy
+    if (
+      (newFormData.statusId === "1" || newFormData.statusId === "4") &&
+      newFormData.peopleAmount !== "0"
+    ) {
       newFormData.peopleAmount = "0";
-      newFormData.bill = "0";
       setErrorPeople("Only BUSY is allowed to have value other than 0.");
     }
+    if (newFormData.statusId !== "3") {
+      newFormData.bill = "0";
+      setErrorBill("Cleaning bill after status changed.");
+    }
 
-    if (errorPeople !== false) {
+    // cleaning bill when status other than busy
+
+    if (errorPeople !== false || errorBill !== false) {
       setForm(newFormData);
     }
-  }, [form, errorPeople]);
+  }, [form, errorPeople, errorBill]);
 
   const updateFields = (e) => {
     setForm({

@@ -2,8 +2,8 @@
   "tables": [
     {
       "id": "2",
-      "statusId": "1",
-      "peopleAmount": "0",
+      "statusId": "3",
+      "peopleAmount": "6",
       "maxPeopleAmount": "9",
       "bill": "0",
       "bil": "0"
